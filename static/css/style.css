@@ -1,0 +1,435 @@
+/* =========================================================
+   EVENTHUB — DARK GLASSMORPHISM THEME
+   All text colors explicitly set for visibility
+   ========================================================= */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: #0a0a1a;
+    color: #e4e4e7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Force ALL default text to be light */
+h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #ffffff; }
+p, span, div, label, li, td, th, a { color: inherit; }
+
+/* =========================================================
+   ANIMATED BACKGROUND
+   ========================================================= */
+.bg-blobs { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .45; animation: float 18s infinite ease-in-out; }
+.blob-1 { width: 500px; height: 500px; background: #7c3aed; top: -150px; left: -100px; }
+.blob-2 { width: 400px; height: 400px; background: #ec4899; bottom: -100px; right: -100px; animation-delay: -6s; }
+.blob-3 { width: 350px; height: 350px; background: #06b6d4; top: 40%; left: 50%; animation-delay: -12s; }
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(60px, -40px) scale(1.1); }
+    66%      { transform: translate(-40px, 60px) scale(.9); }
+}
+
+/* =========================================================
+   GRADIENT TEXT
+   ========================================================= */
+.text-gradient {
+    background: linear-gradient(90deg, #a78bfa, #f472b6, #22d3ee);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+}
+@keyframes shine { to { background-position: 200% center; } }
+
+/* =========================================================
+   GLASSMORPHISM CARDS
+   ========================================================= */
+.glass-nav {
+    background: rgba(20, 20, 40, .75) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform .35s ease, box-shadow .35s ease, border .35s ease;
+    overflow: hidden;
+    color: #e4e4e7;
+}
+.glass-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(167, 139, 250, .5);
+    box-shadow: 0 20px 40px rgba(124, 58, 237, .35);
+}
+
+.glass-alert {
+    background: rgba(30, 30, 50, .95) !important;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, .2);
+    color: #e4e4e7 !important;
+}
+.glass-alert.alert-success { border-color: #10b981; color: #a7f3d0 !important; }
+.glass-alert.alert-danger  { border-color: #ef4444; color: #fca5a5 !important; }
+.glass-alert.alert-warning { border-color: #f59e0b; color: #fcd34d !important; }
+.glass-alert.alert-info    { border-color: #06b6d4; color: #67e8f9 !important; }
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+.navbar .nav-link {
+    color: #cbd5e1 !important;
+    font-weight: 500;
+    transition: color .2s;
+    position: relative;
+}
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 2px;
+    background: linear-gradient(90deg, #a78bfa, #22d3ee);
+    transition: width .3s;
+}
+.navbar .nav-link:hover { color: #ffffff !important; }
+.navbar .nav-link:hover::after { width: 100%; }
+.navbar-brand { color: #ffffff !important; }
+.navbar-toggler { border-color: rgba(255,255,255,.3); }
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.8)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn-gradient {
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    border: none;
+    color: #ffffff !important;
+    font-weight: 600;
+    padding: .55rem 1.4rem;
+    border-radius: 50px;
+    transition: all .3s ease;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, .4);
+}
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, .6);
+    color: #ffffff !important;
+}
+
+.btn-outline-glass {
+    border: 1px solid rgba(255, 255, 255, .35);
+    color: #e4e4e7 !important;
+    border-radius: 50px;
+    padding: .55rem 1.4rem;
+    background: transparent;
+    transition: all .3s;
+}
+.btn-outline-glass:hover {
+    background: rgba(255, 255, 255, .12);
+    color: #ffffff !important;
+    border-color: #a78bfa;
+}
+.btn-outline-glass.active {
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    color: #ffffff !important;
+    border-color: transparent;
+}
+.btn-outline-glass.disabled,
+.btn-outline-glass:disabled {
+    color: #94a3b8 !important;
+    border-color: rgba(255,255,255,.15);
+    opacity: .6;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero { padding: 60px 0 30px; text-align: center; }
+.hero h1 { font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1.1; margin-bottom: 1rem; letter-spacing: -1px; }
+.hero p.lead { color: #cbd5e1; font-size: 1.15rem; max-width: 600px; margin: 0 auto 1.8rem; }
+
+/* =========================================================
+   EVENT CARDS
+   ========================================================= */
+.event-card .card-img-top {
+    height: 160px;
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, .9);
+    position: relative;
+    overflow: hidden;
+}
+.event-card .card-img-top::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .25), transparent 60%);
+}
+.event-card .card-body { padding: 1.3rem; background: transparent; }
+.event-card h5 { color: #ffffff !important; font-weight: 600; }
+.event-card p,
+.event-card small,
+.event-card .text-muted { color: #cbd5e1 !important; }
+
+/* =========================================================
+   BADGES & CATEGORY TAGS
+   ========================================================= */
+.badge-category {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .5px;
+    padding: 4px 12px;
+    border-radius: 50px;
+    background: linear-gradient(90deg, rgba(124, 58, 237, .35), rgba(236, 72, 153, .35));
+    border: 1px solid rgba(167, 139, 250, .5);
+    color: #e9d5ff !important;
+    text-transform: uppercase;
+}
+
+/* Bootstrap badges – force readable text */
+.badge { color: #ffffff !important; font-weight: 600; }
+.badge.bg-success { background: linear-gradient(135deg, #10b981, #059669) !important; color: #ffffff !important; }
+.badge.bg-danger  { background: linear-gradient(135deg, #ef4444, #b91c1c) !important; color: #ffffff !important; }
+.badge.bg-info    { background: linear-gradient(135deg, #06b6d4, #0891b2) !important; color: #ffffff !important; }
+.badge.bg-warning { background: linear-gradient(135deg, #f59e0b, #d97706) !important; color: #1a1a2e !important; }
+.badge.bg-secondary { background: #475569 !important; color: #ffffff !important; }
+
+/* =========================================================
+   SEARCH BAR
+   ========================================================= */
+.search-bar {
+    background: rgba(255, 255, 255, .07);
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 50px;
+    padding: 6px 6px 6px 20px;
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    transition: border .3s, box-shadow .3s;
+}
+.search-bar:focus-within { border-color: #a78bfa; box-shadow: 0 0 0 4px rgba(167, 139, 250, .15); }
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: #ffffff !important;
+    flex: 1;
+    outline: none;
+    font-size: 1rem;
+}
+.search-bar input::placeholder { color: #94a3b8; }
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+.form-control, .form-select {
+    background: rgba(255, 255, 255, .07) !important;
+    border: 1px solid rgba(255, 255, 255, .15) !important;
+    color: #ffffff !important;
+    border-radius: 12px;
+    padding: .75rem 1rem;
+    transition: all .3s;
+}
+.form-control:focus, .form-select:focus {
+    background: rgba(255, 255, 255, .12) !important;
+    border-color: #a78bfa !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, .15);
+}
+.form-control::placeholder { color: #94a3b8 !important; }
+.form-select option { background: #1a1a2e; color: #ffffff; }
+.form-label { color: #e4e4e7 !important; font-weight: 500; margin-bottom: .4rem; }
+textarea.form-control { color: #ffffff !important; }
+
+/* Date/time picker text */
+input[type="date"], input[type="time"] { color-scheme: dark; }
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+/* =========================================================
+   AUTH CARDS
+   ========================================================= */
+.auth-card {
+    max-width: 440px;
+    margin: 40px auto;
+    padding: 2.5rem 2rem;
+    border-radius: 24px;
+}
+.auth-card h2 { color: #ffffff !important; }
+.auth-card p { color: #cbd5e1 !important; }
+
+/* =========================================================
+   TABLES — FIXED! All text clearly visible
+   ========================================================= */
+.glass-table {
+    background: rgba(255, 255, 255, .05);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .12);
+}
+
+.glass-table table {
+    margin: 0;
+    color: #e4e4e7 !important;
+    background: transparent !important;
+    --bs-table-bg: transparent !important;
+    --bs-table-color: #e4e4e7 !important;
+    --bs-table-hover-bg: rgba(255, 255, 255, .06) !important;
+    --bs-table-hover-color: #ffffff !important;
+    --bs-table-border-color: rgba(255, 255, 255, .08) !important;
+}
+
+.glass-table thead {
+    background: linear-gradient(90deg, rgba(124, 58, 237, .55), rgba(236, 72, 153, .55)) !important;
+}
+
+.glass-table thead th {
+    color: #ffffff !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .8rem;
+    letter-spacing: .5px;
+    padding: 1rem;
+    border: none !important;
+    background: transparent !important;
+    white-space: nowrap;
+}
+
+.glass-table tbody td {
+    color: #e4e4e7 !important;
+    padding: 1rem;
+    border-color: rgba(255, 255, 255, .08) !important;
+    vertical-align: middle;
+    background: transparent !important;
+}
+
+.glass-table tbody tr {
+    background: transparent !important;
+    transition: background .2s;
+}
+
+.glass-table tbody tr:hover {
+    background: rgba(255, 255, 255, .06) !important;
+}
+
+.glass-table tbody tr:hover td {
+    color: #ffffff !important;
+}
+
+/* Links inside tables */
+.glass-table a {
+    color: #c4b5fd !important;
+    text-decoration: none;
+    font-weight: 600;
+}
+.glass-table a:hover { color: #f0abfc !important; text-decoration: underline; }
+
+/* Strong text inside tables */
+.glass-table strong { color: #ffffff !important; font-weight: 600; }
+
+/* Bootstrap table overrides (strips default white bg) */
+.table {
+    --bs-table-bg: transparent !important;
+    --bs-table-color: #e4e4e7 !important;
+    --bs-table-border-color: rgba(255, 255, 255, .08) !important;
+    --bs-table-striped-bg: rgba(255, 255, 255, .03) !important;
+    --bs-table-striped-color: #e4e4e7 !important;
+    --bs-table-hover-bg: rgba(255, 255, 255, .06) !important;
+    --bs-table-hover-color: #ffffff !important;
+    color: #e4e4e7 !important;
+    background: transparent !important;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+.fade-up { opacity: 0; transform: translateY(24px); animation: fadeUp .7s ease forwards; }
+.fade-up:nth-child(1) { animation-delay: .05s; }
+.fade-up:nth-child(2) { animation-delay: .15s; }
+.fade-up:nth-child(3) { animation-delay: .25s; }
+.fade-up:nth-child(4) { animation-delay: .35s; }
+.fade-up:nth-child(5) { animation-delay: .45s; }
+.fade-up:nth-child(6) { animation-delay: .55s; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+/* =========================================================
+   STAT BOXES
+   ========================================================= */
+.stat-box { text-align: center; padding: 1.5rem; }
+.stat-box h3 { font-size: 2.2rem; margin-bottom: .3rem; color: #ffffff !important; }
+.stat-box p { color: #cbd5e1 !important; margin: 0; font-size: .85rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* =========================================================
+   TEXT COLOR OVERRIDES
+   ========================================================= */
+.text-muted { color: #94a3b8 !important; }
+.text-white { color: #ffffff !important; }
+.text-light { color: #e4e4e7 !important; }
+.text-dark  { color: #1a1a2e !important; }
+
+/* Fix: alert links */
+.alert a { color: inherit !important; text-decoration: underline; }
+
+/* Fix: dropdown menus */
+.dropdown-menu {
+    background: #1a1a2e !important;
+    border: 1px solid rgba(255, 255, 255, .15) !important;
+}
+.dropdown-item { color: #e4e4e7 !important; }
+.dropdown-item:hover { background: rgba(255, 255, 255, .1) !important; color: #ffffff !important; }
+
+/* Fix: modal windows */
+.modal-content {
+    background: #1a1a2e !important;
+    color: #e4e4e7 !important;
+    border: 1px solid rgba(255, 255, 255, .15) !important;
+}
+
+/* Fix: pagination */
+.page-link {
+    background: rgba(255, 255, 255, .06) !important;
+    border-color: rgba(255, 255, 255, .15) !important;
+    color: #e4e4e7 !important;
+}
+.page-link:hover {
+    background: rgba(124, 58, 237, .4) !important;
+    color: #ffffff !important;
+}
+
+/* Fix: borders (Bootstrap default border-dark is invisible on dark bg) */
+.border-top, .border-bottom {
+    border-color: rgba(255, 255, 255, .12) !important;
+}
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+   ========================================================= */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0a0a1a; }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #7c3aed, #ec4899);
+    border-radius: 10px;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer { color: #94a3b8 !important; }
+footer p { color: #94a3b8 !important; }

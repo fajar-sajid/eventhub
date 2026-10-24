@@ -1,0 +1,47 @@
+
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: event_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword123
+      MYSQL_DATABASE: event_management
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpassword123"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "3307:3306"   # host:container — 3307 to avoid conflict with local MySQL
+    networks:
+      - eventnet
+
+  web:
+    build: .
+    container_name: event_web
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - SECRET_KEY=abc123xyz-super-secret-key
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=rootpassword123
+      - MYSQL_DB=event_management
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - eventnet
+
+volumes:
+  mysql_data:
+
+networks:
+  eventnet:
+    driver: bridge

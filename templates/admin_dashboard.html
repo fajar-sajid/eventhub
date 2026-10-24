@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard — EventHub{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4 fade-up">
+    <h2 class="mb-0"><i class="bi bi-speedometer2 text-gradient me-2"></i>Admin Dashboard</h2>
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('admin_categories') }}" class="btn btn-outline-glass">
+            <i class="bi bi-tags me-1"></i> Categories
+        </a>
+        <a href="{{ url_for('add_event') }}" class="btn btn-gradient">
+            <i class="bi bi-plus-circle me-1"></i> Add Event
+        </a>
+    </div>
+</div>
+
+<div class="row g-3 mb-4 fade-up">
+    <div class="col-6 col-md-3">
+        <div class="glass-card stat-box">
+            <h3 class="text-gradient">{{ total_events }}</h3>
+            <p>Total Events</p>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="glass-card stat-box">
+            <h3 class="text-gradient">{{ total_users }}</h3>
+            <p>Users</p>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="glass-card stat-box">
+            <h3 class="text-gradient">{{ total_bookings }}</h3>
+            <p>Bookings</p>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="glass-card stat-box">
+            <h3 class="text-gradient">{{ total_categories }}</h3>
+            <p>Categories</p>
+        </div>
+    </div>
+</div>
+
+<div class="glass-table fade-up">
+    <table class="table table-hover mb-0">
+        <thead>
+            <tr>
+                <th>ID</th><th>Title</th><th>Date</th><th>Venue</th>
+                <th>Category</th><th>Booked</th><th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in events %}
+            <tr>
+                <td>#{{ e[0] }}</td>
+                <td><strong>{{ e[1] }}</strong></td>
+                <td>{{ e[2] }}</td>
+                <td>{{ e[3] }}</td>
+                <td>{{ e[5] or '—' }}</td>
+                <td>{{ e[6] }} / {{ e[4] }}</td>
+                <td>
+                    <a href="{{ url_for('event_participants', event_id=e[0]) }}"
+                       class="btn btn-outline-glass btn-sm" title="Participants">
+                        <i class="bi bi-people"></i>
+                    </a>
+                    <a href="{{ url_for('edit_event', event_id=e[0]) }}"
+                       class="btn btn-outline-glass btn-sm" title="Edit">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <form method="POST" action="{{ url_for('delete_event', event_id=e[0]) }}"
+                          style="display:inline" onsubmit="return confirm('Delete this event?');">
+                        <button class="btn btn-outline-glass btn-sm text-danger" title="Delete">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="7" class="text-center text-muted py-4">No events yet. Click "Add Event".</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

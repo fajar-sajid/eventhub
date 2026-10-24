@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}{{ action }} Event — EventHub{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="glass-card fade-up" style="padding:2rem">
+            <h2 class="mb-4">
+                <i class="bi bi-{{ 'plus-circle' if action=='Add' else 'pencil-square' }} text-gradient me-2"></i>
+                {{ action }} Event
+            </h2>
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Title *</label>
+                    <input type="text" name="title" class="form-control" required
+                           value="{{ event[1] if event else '' }}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="3">{{ event[2] if event else '' }}</textarea>
+                </div>
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Date *</label>
+                        <input type="date" name="event_date" class="form-control" required
+                               value="{{ event[3] if event else '' }}">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Time *</label>
+                        <input type="time" name="event_time" class="form-control" required
+                               value="{{ event[4] if event else '' }}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Venue *</label>
+                    <input type="text" name="venue" class="form-control" required
+                           value="{{ event[5] if event else '' }}">
+                </div>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Category</label>
+                        <select name="category_id" class="form-select">
+                            <option value="">— None —</option>
+                            {% for c in categories %}
+                            <option value="{{ c[0] }}" {% if event and event[6] == c[0] %}selected{% endif %}>
+                                {{ c[1] }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Capacity *</label>
+                        <input type="number" name="capacity" min="1" class="form-control" required
+                               value="{{ event[7] if event else 100 }}">
+                    </div>
+                </div>
+                <button class="btn btn-gradient">{{ action }} Event</button>
+                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-glass ms-2">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

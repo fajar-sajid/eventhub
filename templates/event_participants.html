@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Participants — EventHub{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 fade-up">
+    <h2 class="mb-0"><i class="bi bi-people-fill text-gradient me-2"></i>{{ event_title }}</h2>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-glass">← Back</a>
+</div>
+
+<div class="glass-table fade-up">
+    <table class="table table-hover mb-0">
+        <thead><tr><th>Name</th><th>Email</th><th>Booked On</th><th>Status</th></tr></thead>
+        <tbody>
+            {% for p in participants %}
+            <tr>
+                <td><strong>{{ p[0] }}</strong></td>
+                <td>{{ p[1] }}</td>
+                <td>{{ p[2] }}</td>
+                <td><span class="badge bg-{{ 'success' if p[3]=='confirmed' else 'danger' }}">{{ p[3] }}</span></td>
+            </tr>
+            {% else %}
+            <tr><td colspan="4" class="text-center text-muted py-4">No participants yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

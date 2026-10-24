@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.vscode/
+*.log
+.DS_Store
+test7_failure.png
+.last_test_user.txt
+screenshots/
